@@ -28,6 +28,7 @@ for obj in intfs:
     print("Object: {0}".format(obj))
     print("  Interface config line: {0}".format(obj.text))
     print("  Interface mode: {0}".format(intf_mode))
-    print("  IP address: {0} {1}".format(ip, mask))
+    print("  IP address: {0}".format(ip))
+    print("  IP Mask: {0}".format(mask))
 
 
