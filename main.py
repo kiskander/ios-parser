@@ -9,7 +9,7 @@ intfs = parse.find_objects(r"^interface")
 
 def translate_netmask(ip):
     ip = IPNetwork(ip)
-    return ip.netmask
+    return ip.netmask, ip.ip
 
 # For each interface above, print out relevant information...
 for obj in intfs:
@@ -23,11 +23,11 @@ for obj in intfs:
 
     ip_mask = obj.re_match_iter_typed(r'ip\saddress\s\S+\s+(\S+)')
 
+    mask, ip = translate_netmask(ip_addr)
     # Print out what we found...
     print("Object: {0}".format(obj))
     print("  Interface config line: {0}".format(obj.text))
     print("  Interface mode: {0}".format(intf_mode))
-    print("  IP address: {0}".format(ip_addr))  # how do we replace the cidr with a netmask here
-    print("  IP mask: {0}".format(translate_netmask(ip_addr)))
+    print("  IP address: {0} {1}".format(ip, mask))
 
 
